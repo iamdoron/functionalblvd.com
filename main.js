@@ -1,22 +1,24 @@
 $(function() {
     var minScale = 0.3;
 
-    $(window).on('resize', function(){
-        console.log('resize');
-    })
+
     var el = $('.intro'),
         blvd = $('#blvd'),
         offset = blvd.offset(),
         windowHeight = $(window).height();
     var scrollTopPositionWhenReachedMaxScale = (1-minScale) * offset.top;
     updateBlvd();
+    $(window).on('resize', function(){
+        updateBlvd();
+    })
     $(window).on('scroll', function() {
         updateBlvd();
-        // if (windowTop >= 1020) {
-        //     el.hide();
-        // } else {
-        //     el.show();
-        // }
+        var radarElm = $("#team-radar");
+        if (radarElm) {
+            var windowTop = $(window).scrollTop();
+            var distance =  250 + windowTop - radarElm.offset().top;
+            radarElm.css('transform', 'translateY(' + (-Math.max(-70, Math.min(70,distance/10)) ) + 'px) ');
+        }
     });
 
     function updateBlvd() {
@@ -24,7 +26,6 @@ $(function() {
             scrollPercent = Math.max(minScale, (offset.top - windowTop) / offset.top),
             scale = 'scale(' + scrollPercent + ')';
 
-        console.log(windowTop, scrollTopPositionWhenReachedMaxScale, 'translateY(' + (-windowTop + scrollTopPositionWhenReachedMaxScale) + 'px) ')
         el.css('transform', scale);
         if (scrollPercent === minScale) {
             if (!scrollTopPositionWhenReachedMaxScale) {
@@ -34,7 +35,8 @@ $(function() {
         }
     }
 
-    var ctx = document.getElementById("team-radar").getContext("2d");
+    var radarElm = document.getElementById("team-radar");
+    var ctx = radarElm.getContext("2d");
     var data = {
         labels: ["Visual Design", "Software", "Product Development", "Team", "Amazing Product"],
         datasets: [
