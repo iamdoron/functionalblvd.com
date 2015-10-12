@@ -47,6 +47,11 @@ h1 {
   transform-origin: 50%;
 }
 
+#team-radar {
+	float: right;
+	margin-right: -370px;
+	margin-top: 150px;
+}
 .content {
   width: 700px;
   margin: 0 100px 150px;
