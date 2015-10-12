@@ -1,28 +1,38 @@
 $(function() {
-    var scrollTopPositionWhenReachedMaxScale = undefined;
+    var minScale = 0.3;
+
+    $(window).on('resize', function(){
+        console.log('resize');
+    })
     var el = $('.intro'),
         blvd = $('#blvd'),
         offset = blvd.offset(),
         windowHeight = $(window).height();
-
+    var scrollTopPositionWhenReachedMaxScale = (1-minScale) * offset.top;
+    updateBlvd();
     $(window).on('scroll', function() {
-        var windowTop = $(window).scrollTop(),
-            scrollPercent = Math.max(0.3, (offset.top - windowTop) / offset.top),
-            scale = 'scale(' + scrollPercent + ')';
-
-        el.css('transform', scale);
-        if (scrollPercent === 0.3) {
-            if (!scrollTopPositionWhenReachedMaxScale) {
-                scrollTopPositionWhenReachedMaxScale = windowTop;
-            }
-           el.css('transform', 'translateY(' + (-windowTop + scrollTopPositionWhenReachedMaxScale) + 'px) ' + scale);
-        }
+        updateBlvd();
         // if (windowTop >= 1020) {
         //     el.hide();
         // } else {
         //     el.show();
         // }
     });
+
+    function updateBlvd() {
+        var windowTop = $(window).scrollTop(),
+            scrollPercent = Math.max(minScale, (offset.top - windowTop) / offset.top),
+            scale = 'scale(' + scrollPercent + ')';
+
+        console.log(windowTop, scrollTopPositionWhenReachedMaxScale, 'translateY(' + (-windowTop + scrollTopPositionWhenReachedMaxScale) + 'px) ')
+        el.css('transform', scale);
+        if (scrollPercent === minScale) {
+            if (!scrollTopPositionWhenReachedMaxScale) {
+                scrollTopPositionWhenReachedMaxScale = windowTop;
+            }
+           el.css('transform', 'translateY(' + (-windowTop + scrollTopPositionWhenReachedMaxScale) + 'px) ' + scale);
+        }
+    }
 
     var ctx = document.getElementById("team-radar").getContext("2d");
     var data = {
