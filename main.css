@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
+
+body {
+  color: #333;
+  font-family: Open sans;
+}
+
+h1 {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  font-size: 52px;
+  z-index: 999;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.blvd {
+  height: 615px;
+  width: 764px;
+  margin: 540px auto 100px;
+  -webkit-background-size: 764px 615px;
+  background-size: 764px 615px;
+  backface-visibility: hidden;
+  background-position: center;
+}
+
+.blvd.intro {
+  background: white url("img/blvd.png") no-repeat 0 0;
+  position: fixed;
+  width: 2548px;
+  z-index:9999;
+  height: 2052px;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  margin: 0;
+  top: 0;
+  left: 50%;
+  margin-top: -600px;
+  margin-left: -1274px;
+  background-position: center;
+  -webkit-transform-origin: 50%;
+  -ms-transform-origin: 50%;
+  transform-origin: 50%;
+}
+
+.content {
+  width: 500px;
+  margin: 0 auto 150px;
+  height: 600px;
+}
+
+.content h2 {
+  font-size: 52px;
+  line-height: 1.0865;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+
+.content p {
+  font-size: 18px;
+  margin: 1em 0 0 0;
+  line-height: 1.8;
+  color: #555;
+  font-weight: 400;
+}
+
+.content p a {
+  color: #555;
+  text-decoration: underline;
+}
+
+footer {
+	color: gray;
+	text-align: center;
+	margin-bottom: 30px;
+}
