@@ -38,18 +38,18 @@ $(function() {
     var radarElm = document.getElementById("team-radar");
     var ctx = radarElm.getContext("2d");
     var data = {
-        labels: ["Visual Design", "Software", "Product Development", "Team", "Amazing Product"],
+        labels: ["Mechanics", "Dynamics", "Aesthetics"],
         datasets: [
 
             {
                 label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
+                fillColor: "rgba(181,187,205,0.2)",
+                strokeColor: "rgba(51,187,205,1)",
                 pointColor: "rgba(151,187,205,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [100, 100, 100, 100, 101]
+                data: [100, 100, 100]
             }
         ]
     };
@@ -60,7 +60,7 @@ $(function() {
 
     setInterval(function(){
        radar.datasets[0].points.forEach(function(point){
-        point.value = 100 + Math.random()*10
+        point.value = 100 + Math.random()*100
         })
         radar.update()
     }, 800)
